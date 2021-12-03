@@ -458,3 +458,5 @@ TSWLatexianTemp*
 !.vscode/*.code-snippets
 
 # End of https://www.toptal.com/developers/gitignore/api/latex,tex,visualstudiocode
+example/.DS_Store
+.DS_Store

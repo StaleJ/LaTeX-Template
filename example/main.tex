@@ -1,0 +1,316 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\linespread{1.25}
+
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{apacite}
+\usepackage{amssymb}
+\usepackage{nicefrac}
+\usepackage{dirtytalk}
+\usepackage{tikz}
+\usepackage{IEEEtrantools}
+
+%\usepackage{showframe}
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  total={170mm,257mm},
+  left=20mm,
+  top=20mm,
+}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\renewcommand{\iff}{\;\leftrightarrow\;}
+\newcommand{\floor}[1][x]{\lfloor #1\rfloor}
+\newcommand{\ceil}[1][x]{\lceil #1\rceil}
+\newcommand{\mat}[1][A]{\text{\textbf{#1}}}
+\newcommand{\I}{\mathbb{1}}
+\newcommand{\ihat}{\hat{\imath}}
+\newcommand{\jhat}{\hat{\jmath}}
+\newcommand{\khat}{\hat{k}}
+\newcommand*{\QEDA}{\hfill\ensuremath{\blacksquare}}
+\newcommand*{\QEDB}{\null\nobreak\hfill\ensuremath{\square}}%    
+\newcommand{\NN}{\mathcal{N}}
+\newcommand{\vdashn}{\vdash_\NN}
+\newcommand{\GG}{\mathcal{G}}
+\newcommand{\vdashg}{\vdash_\mathcal{G}}
+\newcommand{\lra}{\Leftrightarrow}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
+\newcommand{\underA}{\underline{a}}
+\newcommand{\underB}{\underline{b}}
+
+\setlength\parindent{0pt}
+
+
+\pagestyle{fancy}
+\date{}
+
+\begin{document}
+\lhead{Obligatorisk innlevering 3 i STAT110}
+\rhead{Ståle Jacobsen}
+\textsc{Oppgave 1.(a)}\\
+Les av $\overline{x}$ og $s$ fra Figur 1 for hver av stasjonene 1, 2 og 3. \\ 
+\textbf{Svar:} Vi får at de forskjellige $\overline{x}$ og $s$ til å bli:
+\begin{align*}
+  \overline{x}_1=125 && \overline{x}_2 = 150 && \overline{x}_3=250\\ 
+  s_1=250 && s_2=210 && s_3=395
+\end{align*}
+
+\textsc{Oppgave 1.(b)}\\
+Lag et $95$ konfidensintervall for hver av $\mu_1, \mu_2$ og $\mu_3$ (totalt tre
+intervaller).\\
+\textbf{Svar:} Fra definisjonen kan vi finne konfidensintervallet med:
+\begin{align*}
+  \overline{x}\pm z_{\alpha/2}\frac{s}{\sqrt{n}}
+\end{align*}
+Først $\mu_1$ og vi har $n_1=18,$ $s_1=250,$ $\overline{x}_1=125,$ og $z_{\alpha/2}=1.96$
+\begin{align*}
+  125\pm 1.96 \frac{250}{\sqrt{18}}=[9.506,240.494]
+\end{align*}
+Så $\mu_2$ og vi har $n_2=20$, $s_2=210$ og $\overline{x}_2=150$
+\begin{align*}
+  150\pm 1.96 \frac{210}{\sqrt{20}}=[57.963, 242.037]
+\end{align*}
+Til slutt $\mu_3$ og vi har $n_3=13$, $s_3=395$ og $\overline{x}_3=250$
+\begin{align*}
+  250 \pm 1.96 \frac{395}{\sqrt{13}}=[35.276,464.724] 
+\end{align*}
+
+\textsc{Oppgave 1.(c)}\\
+Hvilke av de tre konfidensintervallene som du konstruerte under punkt b)
+inneholder $\mu_{Ref}=354?$\\
+\textbf{Svar:} Vi kan se at $\mu_3$ inneholder $\mu_{Ref}=354$\\
+
+Hvis du har lest kapittel 9: gjenkjenner du dette spørsmåøet som en hypotesetest
+(hvilke hypotese?)\\
+
+\textsc{Oppgave 2.(a)}\\
+Gitt $n$ observasjoner $t_1,\ldots, t_n$ finn
+sannsynlighetsmaksimeringsestimatet $\hat{\theta}$ for $\theta.$ Finn en
+nummerisk verdi for $\hat{\theta}$ når en har følgende 10 observerte
+betjeningstider: $t_i: 1, 1.4, 2.0, 0.5, 0.7, 2.0, 1.3, 1.1, 1.8, 0.2,$ der
+tidsenhet er ett minutt.\\
+\textbf{Svar:} Vi har
+\begin{align*}
+  L(\theta)=\prod_{i=1}^{n} f(t_i ; \theta)=\prod_{i=1}^{n}\theta e^{-\theta t_i}=\theta^n e^{-\theta \sum_{i=1}^{n} t_i}
+\end{align*}
+Slik at
+\begin{align*}
+  \ln{L}=n \ln{\theta}-\theta \sum_{i=1}^{n}t_i
+\end{align*}
+og
+\begin{align*}
+  \frac{d}{d\theta}\ln{L}=\frac{n}{\theta}- \sum_{i=1}^{n} t_i
+\end{align*}
+dette git at sannsynlighetsmaksimeringsestimatet er gitt ved
+\begin{align*}
+  \hat{\theta}=n/\sum_{i=1}^{n}t_i=1/\overline{t}
+\end{align*}
+Vi får nå estimatet til å bli
+\begin{align*}
+  \hat{\theta} = 10/\sum_{i=1}^{10}t_i =\frac{10}{12}=0.833 
+\end{align*}
+
+\textsc{Oppgave 2.(b)}\\
+Er $\hat{\theta}$ en forventningsrett estimator for $\theta?$ Begrunn svaret.\\
+\textbf{Svar:} $\hat{\theta}$ er ikke en forventningsrett estimator for
+$\theta$, siden
+\begin{align*}
+  E\left(1 / \overline{T} \right)\ne 1 / E\left( \overline{T} \right)
+\end{align*}
+  
+
+\textsc{Oppgave 3.(a)}\\
+Vis at utrykket for log-likelihood funkjsonen er gitt ved
+\begin{align*}
+  l(\theta) = [5\ln{(2)}-\ln{(3!)}-\ln{(5!)}]+8\ln{\theta}-3\theta.
+\end{align*}
+Plott $l(\theta)$ for verdier av $\theta\in [0,10]$ (en grov skisse er OK). For
+ca hvilken vedi av $\theta$ har $l(\theta)$ sitt maksimum?\\
+Vi vet at
+\begin{align*}
+  P(X=x)=e^{-\lambda}\frac{1}{x!}\lambda^x && L(\lambda; x_1,\ldots, x_n)=\prod_{j=1}^n e^{-\lambda}\frac{1}{x_j!}\lambda^{x_j}
+\end{align*}
+Vi får nå
+\begin{align*}
+  L(X=3, Y=5;\theta, 2\theta)=&e^{-\theta}\frac{1}{3!}\theta^3 e^{-2\theta} \frac{1}{5!} (2\theta)^5\\
+  \ln{(L)}=l(\theta)=&\ln{\left( e^{-\theta}\frac{1}{3!}\theta^3 e^{-2\theta} \frac{1}{5!} 2^5 \theta^5 \right)}\\
+  =& - \theta - \ln{3!} + 3\ln{\theta}-2\theta - \ln{5!}+5\ln{2}+5\ln{\theta}\\
+  =& 5 \ln{2}-\ln{3!}-\ln{5!}+ 8\ln{\theta}-3\theta
+\end{align*}
+Som vi skulle vise
+\begin{center}
+  \includegraphics[scale=0.75]{lx.png}
+\end{center}
+Når $\theta=2.667$ har $l(\theta)$ ca sitt maksimum.\\
+
+\textsc{Oppgave 3.(b)}\\
+Beregn sannsynlighetsmaksimeringsestimatoren $\hat{\theta}$ for de observerte
+verdiene\\ $x=3$ og $y=5.$
+\textbf{Svar:} Begynner med å derivere $l$ med hensyn på $\theta$
+\begin{align*}
+  \frac{d}{d\theta}l(\theta)=&\frac{d}{d\theta}\left( 5 \ln{2}-\ln{3!}-\ln{5!}+8\ln{\theta}-3\theta \right)\\
+  =& \frac{d}{d\theta}\left( \ln{\frac{2\theta^8}{45}} - 3\theta \right)\\
+  =& \frac{d}{d\theta}\left( ln{\frac{2\theta^8}{45}} \right)-\frac{d}{d\theta}\left( 3\theta \right \\
+  =& \frac{8}{\theta}-3
+\end{align*}
+Så se på når $\frac{d}{d\theta}l(\theta)=0$ og løse for $\theta$
+\begin{align*}
+  \frac{8}{\theta}-3 = 0\\
+  \theta = \frac{8}{3}
+\end{align*}
+Sannsynlighetsmaksimeringsestimatoren $\hat{\theta}$ for de observerte verdiene
+blir $8/3$
+\textsc{Oppgave 4.(a)}\\
+Vis at disse har forventning og varians:
+\begin{align*}
+  E(X_1)=\theta, && V(X_1)=\theta(1-\theta)\\
+  E(X_2) = 4\theta, && V(X_2)=4\theta(1-4\theta)\\
+  E(X_3) = 5\theta, && V(X_3)=5\theta(1-5\theta)
+\end{align*}
+Du vil bestemme et estimat for sannsynligheten $\theta$ ut fra de tre
+observasjonene $X_1, X_2, X_3.$ Du foreslår at man skal bruke en av disse
+estimatorene:
+\begin{align*}
+  \hat{\theta}_1 = \frac{1}{10}(X_1+X_2+X_3), && \hat{\theta}_2=\frac{1}{3}(X_1+\frac{X_2}{4}+ \frac{X_3}{5}).  
+\end{align*}
+\textbf{Svar:} Alle tre $X_1, X_2, X_3$ er binomisk fordelt med $n=1$ og
+henholdsvis $p_1=\theta, p_2=4\theta$ og $p_5=5\theta.$
+For en binomisk fordeling med $n=1$ har vi $E(X)=np=p$ og
+$V(X)=np(1-np)=p(1-p).$\\
+Vi får
+\begin{align*}
+  E(X_1)=p_1=\theta && V(X_1)=p_1(1-p_1)=\theta(1-\theta)\\
+  E(X_2)=p_2=4\theta && V(X_2)=p_2(1-p_2)=4\theta(1-4\theta)\\
+  E(X_3)=p_3=5\theta && V(X_3)=p_3(1-p_3)=5\theta(1-5\theta)
+\end{align*}
+\textsc{Oppgave 4.(b)}\\
+Vis at begge estimatorene er forventingsrette. Fin uttrykk for variansene til
+$\hat{\theta}_1$ og $\hat{\theta}_2$ uttrykt vet $\theta.$ Avgjør hvilken
+estimator som er best når $\theta=0.2.$\\
+\textbf{Svar:} Forventingsrett er at estimatoren har forventning $\theta$\\
+\begin{minipage}[t]{.5\linewidth}
+  \begin{align*}
+    E(\hat{\theta}_1)=&E\left(\frac{1}{10}(X_1+X_2+X_3)\right)\\
+    =&\frac{1}{10}(E(X_1)+E(X_2)+E(X_3))\\
+    =&\frac{1}{10}(\theta+4\theta+5\theta)=\theta\\
+  \end{align*} 
+\end{minipage}
+\begin{minipage}[t]{.5\linewidth}
+  \begin{align*}
+    E(\hat{\theta}_2)=&E\left(\frac{1}{3}\left(X_1+ \frac{X_2}{4}+\frac{X_3}{5}\right)\right)\\
+    =&\frac{1}{3}\left(E(X_1)+\frac{E(X_2)}{4}+\frac{E(X_3)}{5}\right)\\
+    =&\frac{1}{3}\left( \theta + \frac{4\theta}{4}+\frac{5\theta}{5} \right)=\theta
+  \end{align*}
+\end{minipage}
+Begge estimatorene er forventingsrette\\
+\begin{figure}[Htb]
+  \centering
+\hspace{0cm}\begin{minipage}[t]{0.1\linewidth}
+  \begin{align*}
+    V(\hat{\theta}_2) &= V\left( \frac{1}{10^2}(X_1+X_2+X_3) \right)\\
+                      &= \frac{1}{10^2}(V(X_1)+V(X_2)+V(X_3))\\
+                      &= \frac{1}{10^2} (\theta(1-\theta)+4\theta(1-4\theta)+5\theta(1-5\theta))\\
+                      &=\frac{1}{10^2}(\theta-\theta^2+4\theta-16\theta^2+5\theta-25\theta^2)\\
+                      &= \frac{1}{10^2} (10\theta-42\theta^2)\\
+                      &= \frac{\theta}{10}-\frac{21\theta^2}{50}
+  \end{align*}
+\end{minipage}
+\begin{minipage}[t]{0.1\linewidth}
+  \begin{align*}
+    V(\hat{\theta}_2) &= V\left( \frac{1}{3^2} \left( X_1 + \frac{X_2}{4} + \frac{X_3}{5} \right) \right)\\
+                      &= \frac{1}{3^2} \left(  V(X_1) + \frac{V(X_2)}{4} + \frac{V(X_3)}{5} \right)\\
+                      &= \frac{1}{3^2} \left( \theta(1-\theta) + \frac{4\theta(1-4\theta)}{4} + \frac{5\theta(1-5\theta)}{5} \right)\\
+                      &= \frac{1}{3^2} (\theta - \theta^2 + \theta - 4\theta^2+\theta-5\theta^2)\\
+                      &= \frac{1}{3^2}(3\theta - 10\theta^2)\\
+                      &= \frac{\theta}{3}-\frac{10\theta^2}{3}
+  \end{align*}
+\end{minipage}
+\end{figure}
+
+\newpage
+Velger den med minst varians
+\begin{align*}
+  V(\hat{\theta}_1)=\frac{0.2}{10}-\frac{21\cdot 0.2^2}{50}=0.0032 && V(\hat{\theta}_2)=\frac{0.2}{3}-\frac{10\cdot 0.2^2}{3^2}\approx 0.022
+\end{align*}
+Derfor er $\hat{\theta}_1$ best\\
+
+\\
+\textsc{Oppgave 5.(a)}\\
+Hvis en velger et kålhode tilfeldig, hva er sannsynligheten for at dette skal:
+i) veie mindre enn 1.5 kg? ii) veie mellom 2 og 2.5 kg? Hva er sannsynligheten
+for at vektforskjellen mellom to tilfelidig valgte kålhoder skal være mer enn 1
+kg?\\
+\textbf{svar:} i) vil finne $P(X<1.5)$
+\begin{align*}
+  P(X<1.5)=P\left(Z<\frac{1.5-2.2}{0.8}\right)=P(Z<0.875)=0.1908
+\end{align*}
+ii) Vil finne $P(2<X<2.5)$
+\begin{align*}
+  P(2<X<2.5) &= P\left(\frac{2-2.2}{0.8}<Z< \frac{2.5-2.2}{0.8} \right)\\
+             &=P(-0.25 < Z < 0.375)\\
+             &= 0.6443-0.4013=0.24
+\end{align*}
+Vi har to uavhengige variabler $X_1$ og $X_2$ og vi vil finne $P(|X_1-X_2|>1)$.
+\begin{align*}
+  \sigma^2= \sqrt{V(X_1) + V(X_2)}=\sqrt{0.64+0.64}=1.13 && \mu=E(X_1) - E(X_2)=2.2-2.2=0
+\end{align*}
+Som gir
+\begin{align*}
+  P(|X_1-X_2|>1)=P\left( \frac{|X_1-X_2|}{1.13}> \frac{1}{1.13} \right)= 2P\left( Z< \frac{-1}{1.13} \right)=0.3788
+\end{align*}
+
+\textsc{Oppgave 5.(b)}\\
+Gitt at et kålhode oppgyller kravet (veier minst 1.5 kg), hva er sannsynligheten
+for at det veier mellom 2 og 2.5 kg?\\
+\textbf{Svar:}
+\begin{align*}
+  P(2<X<2.5 | Z > 1.5) &= \frac{P(X<2.5)-P(X<2)}{P(X>1.5)}\\
+                       &= P\left( Z < \frac{2.5-\mu}{\sigma} \right)-P\left(Z < \frac{2-\mu}{\sigma} \right)\\
+                       &= \frac{0.24}{1-0.1908}=0.297
+\end{align*}
+
+\textsc{Oppgave 5.(c)}\\
+Hvilke estimator ville di bruke for å estimere $\mu_Y?$ Skriv opp estimatoren og
+regn ut estimatet fra dataene i tabellen. Finn et 90\%-konfidensitervall for
+$\mu_Y.$ Hva blir lengden av konfidensintervallet? Hvor mange planter måtte vi
+minst hatt for at lengden av konfidensintervallet skullet blitt mindre enn 0.2
+kg?\\
+\textbf{Svar:} En estimator for normalfordeling kan være
+$\hat{\mu}_Y=\overline{Y}$ og da blir estimatet
+\begin{align*}
+  \hat{\mu}_Y=\overline{y}=\frac{1}{10}\sum_{i=1}^{10}y_i=2.65
+\end{align*}
+90\% konfidensintervallet blir med $Z_{0.05}=1.645$
+\begin{align*}
+  2.65\pm 1.645 \frac{0.8}{\sqrt{10}}=[2.23, 3.07]
+\end{align*}
+Lengden av konfidensintervallet blir
+\begin{align*}
+  2\cdot 1.645 \frac{0.8}{\sqrt{10}}=0.83
+\end{align*}
+For at lengden $n$ av konfidensintervallet skal bli mindre enn 0.2 kg
+\begin{align*}
+  2\cdot 1.645\frac{0.8}{\sqrt{n}} &< 0.2\\
+                                 n &> \left( \frac{2\cdot 1.645\cdot 0.8}{0.2} \right)^2=13.16
+\end{align*}
+Derfor må $n=14$ for at bredden av intervallet skal bli mindre enn 0.2\\
+
+\textsc{Oppgave 6.(a)}\\
+Finn et 95\% konfidensintervall for $\mu$ basert på dataene som er gitt ovenfor.
+Hvordan tolker du en dekningsgrad på 95\%
+\\\textbf{Svar:} Vi har at $\overline{x}= 284$ og $s=\sqrt{2342/4}=24.2$.\\
+95\% konfidensintervall er gitt ved
+\begin{align*}
+  284\pm 1.96 \cdot \frac{24.2}{\sqrt{5}}= [262.79, 305.21]
+\end{align*}
+Det vil si at hvis vi gjentar målingene $n$ ganger vil [nedre, øvre] inneholde
+den sanne graden av forurensingen 95\% av gangene.
+
+
+\end{document}
